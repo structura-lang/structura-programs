@@ -1,0 +1,310 @@
+{
+  "inputs": ["items"],
+  "variables": {
+    "result": {
+      "type": "input",
+      "data": "items"
+    },
+    "i": {
+      "type": "literal",
+      "data": 1
+    },
+    "j": {
+      "type": "literal",
+      "data": 0
+    },
+    "current": {
+      "type": "literal",
+      "data": null
+    }
+  },
+  "operations": [
+    {
+      "type": "while",
+      "arguments": {
+        "condition": {
+          "type": "call",
+          "data": {
+            "function": {
+              "type": "runtime",
+              "data": "less_than"
+            },
+            "inputs_from": {
+              "a": {
+                "type": "variable",
+                "data": "i"
+              },
+              "b": {
+                "type": "call",
+                "data": {
+                  "function": {
+                    "type": "runtime",
+                    "data": "length"
+                  },
+                  "inputs_from": {
+                    "arr": {
+                      "type": "variable",
+                      "data": "result"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operations": [
+          {
+            "type": "store",
+            "arguments": {
+              "value": {
+                "type": "get",
+                "data": {
+                  "from": {
+                    "type": "variable",
+                    "data": "result"
+                  },
+                  "index": {
+                    "type": "variable",
+                    "data": "i"
+                  }
+                }
+              },
+              "target_var": {
+                "type": "literal",
+                "data": "current"
+              }
+            }
+          },
+          {
+            "type": "store",
+            "arguments": {
+              "value": {
+                "type": "call",
+                "data": {
+                  "function": {
+                    "type": "runtime",
+                    "data": "subtract"
+                  },
+                  "inputs_from": {
+                    "a": {
+                      "type": "variable",
+                      "data": "i"
+                    },
+                    "b": {
+                      "type": "literal",
+                      "data": 1
+                    }
+                  }
+                }
+              },
+              "target_var": {
+                "type": "literal",
+                "data": "j"
+              }
+            }
+          },
+          {
+            "type": "while",
+            "arguments": {
+              "condition": {
+                "type": "call",
+                "data": {
+                  "function": {
+                    "type": "runtime",
+                    "data": "less_than"
+                  },
+                  "inputs_from": {
+                    "a": {
+                      "type": "literal",
+                      "data": -1
+                    },
+                    "b": {
+                      "type": "variable",
+                      "data": "j"
+                    }
+                  }
+                }
+              },
+              "operations": [
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "less_than"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "current"
+                          },
+                          "b": {
+                            "type": "get",
+                            "data": {
+                              "from": {
+                                "type": "variable",
+                                "data": "result"
+                              },
+                              "index": {
+                                "type": "variable",
+                                "data": "j"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "set",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "result"
+                          },
+                          "index": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "add"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "variable",
+                                  "data": "j"
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": 1
+                                }
+                              }
+                            }
+                          },
+                          "value": {
+                            "type": "get",
+                            "data": {
+                              "from": {
+                                "type": "variable",
+                                "data": "result"
+                              },
+                              "index": {
+                                "type": "variable",
+                                "data": "j"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "value": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "subtract"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "variable",
+                                  "data": "j"
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": 1
+                                }
+                              }
+                            }
+                          },
+                          "target_var": {
+                            "type": "literal",
+                            "data": "j"
+                          }
+                        }
+                      }
+                    ],
+                    "else": [
+                      {
+                        "type": "break",
+                        "arguments": {}
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "set",
+            "arguments": {
+              "target_var": {
+                "type": "literal",
+                "data": "result"
+              },
+              "index": {
+                "type": "call",
+                "data": {
+                  "function": {
+                    "type": "runtime",
+                    "data": "add"
+                  },
+                  "inputs_from": {
+                    "a": {
+                      "type": "variable",
+                      "data": "j"
+                    },
+                    "b": {
+                      "type": "literal",
+                      "data": 1
+                    }
+                  }
+                }
+              },
+              "value": {
+                "type": "variable",
+                "data": "current"
+              }
+            }
+          },
+          {
+            "type": "store",
+            "arguments": {
+              "value": {
+                "type": "call",
+                "data": {
+                  "function": {
+                    "type": "runtime",
+                    "data": "add"
+                  },
+                  "inputs_from": {
+                    "a": {
+                      "type": "variable",
+                      "data": "i"
+                    },
+                    "b": {
+                      "type": "literal",
+                      "data": 1
+                    }
+                  }
+                }
+              },
+              "target_var": {
+                "type": "literal",
+                "data": "i"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "output": {
+    "type": "variable",
+    "data": "result"
+  }
+}

@@ -1,0 +1,1743 @@
+{
+  "inputs": ["program", "input"],
+  "variables": {
+    "tape": {
+      "type": "literal",
+      "data": [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ]
+    },
+    "pointer": {
+      "type": "literal",
+      "data": 0
+    },
+    "pc": {
+      "type": "literal",
+      "data": 0
+    },
+    "input_index": {
+      "type": "literal",
+      "data": 0
+    },
+    "output": {
+      "type": "literal",
+      "data": []
+    },
+    "instruction": {
+      "type": "literal",
+      "data": null
+    },
+    "cell_value": {
+      "type": "literal",
+      "data": 0
+    },
+    "input_character": {
+      "type": "literal",
+      "data": null
+    },
+    "matched_bracket": {
+      "type": "literal",
+      "data": -1
+    },
+    "code_to_char": {
+      "type": "literal",
+      "data": [
+        "\u0000",
+        "\u0001",
+        "\u0002",
+        "\u0003",
+        "\u0004",
+        "\u0005",
+        "\u0006",
+        "\u0007",
+        "\b",
+        "\t",
+        "\n",
+        "\u000b",
+        "\f",
+        "\r",
+        "\u000e",
+        "\u000f",
+        "\u0010",
+        "\u0011",
+        "\u0012",
+        "\u0013",
+        "\u0014",
+        "\u0015",
+        "\u0016",
+        "\u0017",
+        "\u0018",
+        "\u0019",
+        "\u001a",
+        "\u001b",
+        "\u001c",
+        "\u001d",
+        "\u001e",
+        "\u001f",
+        " ",
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "&",
+        "'",
+        "(",
+        ")",
+        "*",
+        "+",
+        ",",
+        "-",
+        ".",
+        "/",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        "=",
+        ">",
+        "?",
+        "@",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+        "[",
+        "\\",
+        "]",
+        "^",
+        "_",
+        "`",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "{",
+        "|",
+        "}",
+        "~",
+        ""
+      ]
+    },
+    "char_to_int": {
+      "type": "literal",
+      "data": {
+        "inputs": ["character", "characters"],
+        "variables": {
+          "result": {
+            "type": "literal",
+            "data": 0
+          }
+        },
+        "operations": [
+          {
+            "type": "for_each",
+            "arguments": {
+              "in": {
+                "type": "input",
+                "data": "characters"
+              },
+              "operations": [
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "equal"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "loop",
+                            "data": "item"
+                          },
+                          "b": {
+                            "type": "input",
+                            "data": "character"
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "result"
+                          },
+                          "value": {
+                            "type": "loop",
+                            "data": "index"
+                          }
+                        }
+                      },
+                      {
+                        "type": "break",
+                        "arguments": {}
+                      }
+                    ],
+                    "else": []
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "type": "variable",
+          "data": "result"
+        }
+      }
+    },
+    "int_to_char": {
+      "type": "literal",
+      "data": {
+        "inputs": ["code", "characters"],
+        "variables": {},
+        "operations": [],
+        "output": {
+          "type": "get",
+          "data": {
+            "from": {
+              "type": "input",
+              "data": "characters"
+            },
+            "index": {
+              "type": "input",
+              "data": "code"
+            }
+          }
+        }
+      }
+    },
+    "find_matching_bracket": {
+      "type": "literal",
+      "data": {
+        "inputs": ["program", "position", "direction"],
+        "variables": {
+          "scan": {
+            "type": "input",
+            "data": "position"
+          },
+          "depth": {
+            "type": "literal",
+            "data": 0
+          },
+          "current": {
+            "type": "literal",
+            "data": null
+          },
+          "result": {
+            "type": "literal",
+            "data": -1
+          },
+          "finished": {
+            "type": "literal",
+            "data": false
+          }
+        },
+        "operations": [
+          {
+            "type": "while",
+            "arguments": {
+              "condition": {
+                "type": "call",
+                "data": {
+                  "function": {
+                    "type": "runtime",
+                    "data": "equal"
+                  },
+                  "inputs_from": {
+                    "a": {
+                      "type": "variable",
+                      "data": "finished"
+                    },
+                    "b": {
+                      "type": "literal",
+                      "data": false
+                    }
+                  }
+                }
+              },
+              "operations": [
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "less_than"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "scan"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": 0
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "finished"
+                          },
+                          "value": {
+                            "type": "literal",
+                            "data": true
+                          }
+                        }
+                      }
+                    ],
+                    "else": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "current"
+                          },
+                          "value": {
+                            "type": "get",
+                            "data": {
+                              "from": {
+                                "type": "input",
+                                "data": "program"
+                              },
+                              "index": {
+                                "type": "variable",
+                                "data": "scan"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "if",
+                        "arguments": {
+                          "condition": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "equal"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "variable",
+                                  "data": "current"
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": null
+                                }
+                              }
+                            }
+                          },
+                          "then": [
+                            {
+                              "type": "store",
+                              "arguments": {
+                                "target_var": {
+                                  "type": "literal",
+                                  "data": "finished"
+                                },
+                                "value": {
+                                  "type": "literal",
+                                  "data": true
+                                }
+                              }
+                            }
+                          ],
+                          "else": [
+                            {
+                              "type": "if",
+                              "arguments": {
+                                "condition": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "runtime",
+                                      "data": "equal"
+                                    },
+                                    "inputs_from": {
+                                      "a": {
+                                        "type": "input",
+                                        "data": "direction"
+                                      },
+                                      "b": {
+                                        "type": "literal",
+                                        "data": 1
+                                      }
+                                    }
+                                  }
+                                },
+                                "then": [
+                                  {
+                                    "type": "if",
+                                    "arguments": {
+                                      "condition": {
+                                        "type": "call",
+                                        "data": {
+                                          "function": {
+                                            "type": "runtime",
+                                            "data": "equal"
+                                          },
+                                          "inputs_from": {
+                                            "a": {
+                                              "type": "variable",
+                                              "data": "current"
+                                            },
+                                            "b": {
+                                              "type": "literal",
+                                              "data": "["
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "then": [
+                                        {
+                                          "type": "store",
+                                          "arguments": {
+                                            "target_var": {
+                                              "type": "literal",
+                                              "data": "depth"
+                                            },
+                                            "value": {
+                                              "type": "call",
+                                              "data": {
+                                                "function": {
+                                                  "type": "runtime",
+                                                  "data": "add"
+                                                },
+                                                "inputs_from": {
+                                                  "a": {
+                                                    "type": "variable",
+                                                    "data": "depth"
+                                                  },
+                                                  "b": {
+                                                    "type": "literal",
+                                                    "data": 1
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "else": []
+                                    }
+                                  },
+                                  {
+                                    "type": "if",
+                                    "arguments": {
+                                      "condition": {
+                                        "type": "call",
+                                        "data": {
+                                          "function": {
+                                            "type": "runtime",
+                                            "data": "equal"
+                                          },
+                                          "inputs_from": {
+                                            "a": {
+                                              "type": "variable",
+                                              "data": "current"
+                                            },
+                                            "b": {
+                                              "type": "literal",
+                                              "data": "]"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "then": [
+                                        {
+                                          "type": "store",
+                                          "arguments": {
+                                            "target_var": {
+                                              "type": "literal",
+                                              "data": "depth"
+                                            },
+                                            "value": {
+                                              "type": "call",
+                                              "data": {
+                                                "function": {
+                                                  "type": "runtime",
+                                                  "data": "subtract"
+                                                },
+                                                "inputs_from": {
+                                                  "a": {
+                                                    "type": "variable",
+                                                    "data": "depth"
+                                                  },
+                                                  "b": {
+                                                    "type": "literal",
+                                                    "data": 1
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "else": []
+                                    }
+                                  }
+                                ],
+                                "else": [
+                                  {
+                                    "type": "if",
+                                    "arguments": {
+                                      "condition": {
+                                        "type": "call",
+                                        "data": {
+                                          "function": {
+                                            "type": "runtime",
+                                            "data": "equal"
+                                          },
+                                          "inputs_from": {
+                                            "a": {
+                                              "type": "variable",
+                                              "data": "current"
+                                            },
+                                            "b": {
+                                              "type": "literal",
+                                              "data": "]"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "then": [
+                                        {
+                                          "type": "store",
+                                          "arguments": {
+                                            "target_var": {
+                                              "type": "literal",
+                                              "data": "depth"
+                                            },
+                                            "value": {
+                                              "type": "call",
+                                              "data": {
+                                                "function": {
+                                                  "type": "runtime",
+                                                  "data": "add"
+                                                },
+                                                "inputs_from": {
+                                                  "a": {
+                                                    "type": "variable",
+                                                    "data": "depth"
+                                                  },
+                                                  "b": {
+                                                    "type": "literal",
+                                                    "data": 1
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "else": []
+                                    }
+                                  },
+                                  {
+                                    "type": "if",
+                                    "arguments": {
+                                      "condition": {
+                                        "type": "call",
+                                        "data": {
+                                          "function": {
+                                            "type": "runtime",
+                                            "data": "equal"
+                                          },
+                                          "inputs_from": {
+                                            "a": {
+                                              "type": "variable",
+                                              "data": "current"
+                                            },
+                                            "b": {
+                                              "type": "literal",
+                                              "data": "["
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "then": [
+                                        {
+                                          "type": "store",
+                                          "arguments": {
+                                            "target_var": {
+                                              "type": "literal",
+                                              "data": "depth"
+                                            },
+                                            "value": {
+                                              "type": "call",
+                                              "data": {
+                                                "function": {
+                                                  "type": "runtime",
+                                                  "data": "subtract"
+                                                },
+                                                "inputs_from": {
+                                                  "a": {
+                                                    "type": "variable",
+                                                    "data": "depth"
+                                                  },
+                                                  "b": {
+                                                    "type": "literal",
+                                                    "data": 1
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "else": []
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "if",
+                              "arguments": {
+                                "condition": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "runtime",
+                                      "data": "equal"
+                                    },
+                                    "inputs_from": {
+                                      "a": {
+                                        "type": "variable",
+                                        "data": "depth"
+                                      },
+                                      "b": {
+                                        "type": "literal",
+                                        "data": 0
+                                      }
+                                    }
+                                  }
+                                },
+                                "then": [
+                                  {
+                                    "type": "store",
+                                    "arguments": {
+                                      "target_var": {
+                                        "type": "literal",
+                                        "data": "result"
+                                      },
+                                      "value": {
+                                        "type": "variable",
+                                        "data": "scan"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "type": "store",
+                                    "arguments": {
+                                      "target_var": {
+                                        "type": "literal",
+                                        "data": "finished"
+                                      },
+                                      "value": {
+                                        "type": "literal",
+                                        "data": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "else": [
+                                  {
+                                    "type": "store",
+                                    "arguments": {
+                                      "target_var": {
+                                        "type": "literal",
+                                        "data": "scan"
+                                      },
+                                      "value": {
+                                        "type": "call",
+                                        "data": {
+                                          "function": {
+                                            "type": "runtime",
+                                            "data": "add"
+                                          },
+                                          "inputs_from": {
+                                            "a": {
+                                              "type": "variable",
+                                              "data": "scan"
+                                            },
+                                            "b": {
+                                              "type": "input",
+                                              "data": "direction"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "type": "variable",
+          "data": "result"
+        }
+      }
+    },
+    "running": {
+      "type": "literal",
+      "data": true
+    }
+  },
+  "operations": [
+    {
+      "type": "while",
+      "arguments": {
+        "condition": {
+          "type": "variable",
+          "data": "running"
+        },
+        "operations": [
+          {
+            "type": "if",
+            "arguments": {
+              "condition": {
+                "type": "call",
+                "data": {
+                  "function": {
+                    "type": "runtime",
+                    "data": "equal"
+                  },
+                  "inputs_from": {
+                    "a": {
+                      "type": "get",
+                      "data": {
+                        "from": {
+                          "type": "input",
+                          "data": "program"
+                        },
+                        "index": {
+                          "type": "variable",
+                          "data": "pc"
+                        }
+                      }
+                    },
+                    "b": {
+                      "type": "literal",
+                      "data": null
+                    }
+                  }
+                }
+              },
+              "then": [
+                {
+                  "type": "store",
+                  "arguments": {
+                    "target_var": {
+                      "type": "literal",
+                      "data": "running"
+                    },
+                    "value": {
+                      "type": "literal",
+                      "data": false
+                    }
+                  }
+                }
+              ],
+              "else": [
+                {
+                  "type": "store",
+                  "arguments": {
+                    "target_var": {
+                      "type": "literal",
+                      "data": "instruction"
+                    },
+                    "value": {
+                      "type": "get",
+                      "data": {
+                        "from": {
+                          "type": "input",
+                          "data": "program"
+                        },
+                        "index": {
+                          "type": "variable",
+                          "data": "pc"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "equal"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "instruction"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": ">"
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "pointer"
+                          },
+                          "value": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "modulo"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "runtime",
+                                      "data": "add"
+                                    },
+                                    "inputs_from": {
+                                      "a": {
+                                        "type": "variable",
+                                        "data": "pointer"
+                                      },
+                                      "b": {
+                                        "type": "literal",
+                                        "data": 1
+                                      }
+                                    }
+                                  }
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": 256
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "else": []
+                  }
+                },
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "equal"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "instruction"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": "<"
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "pointer"
+                          },
+                          "value": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "modulo"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "runtime",
+                                      "data": "add"
+                                    },
+                                    "inputs_from": {
+                                      "a": {
+                                        "type": "call",
+                                        "data": {
+                                          "function": {
+                                            "type": "runtime",
+                                            "data": "subtract"
+                                          },
+                                          "inputs_from": {
+                                            "a": {
+                                              "type": "variable",
+                                              "data": "pointer"
+                                            },
+                                            "b": {
+                                              "type": "literal",
+                                              "data": 1
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "b": {
+                                        "type": "literal",
+                                        "data": 256
+                                      }
+                                    }
+                                  }
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": 256
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "else": []
+                  }
+                },
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "equal"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "instruction"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": "+"
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "cell_value"
+                          },
+                          "value": {
+                            "type": "get",
+                            "data": {
+                              "from": {
+                                "type": "variable",
+                                "data": "tape"
+                              },
+                              "index": {
+                                "type": "variable",
+                                "data": "pointer"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "set",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "tape"
+                          },
+                          "index": {
+                            "type": "variable",
+                            "data": "pointer"
+                          },
+                          "value": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "modulo"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "runtime",
+                                      "data": "add"
+                                    },
+                                    "inputs_from": {
+                                      "a": {
+                                        "type": "variable",
+                                        "data": "cell_value"
+                                      },
+                                      "b": {
+                                        "type": "literal",
+                                        "data": 1
+                                      }
+                                    }
+                                  }
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": 256
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "else": []
+                  }
+                },
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "equal"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "instruction"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": "-"
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "cell_value"
+                          },
+                          "value": {
+                            "type": "get",
+                            "data": {
+                              "from": {
+                                "type": "variable",
+                                "data": "tape"
+                              },
+                              "index": {
+                                "type": "variable",
+                                "data": "pointer"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "set",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "tape"
+                          },
+                          "index": {
+                            "type": "variable",
+                            "data": "pointer"
+                          },
+                          "value": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "modulo"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "runtime",
+                                      "data": "add"
+                                    },
+                                    "inputs_from": {
+                                      "a": {
+                                        "type": "call",
+                                        "data": {
+                                          "function": {
+                                            "type": "runtime",
+                                            "data": "subtract"
+                                          },
+                                          "inputs_from": {
+                                            "a": {
+                                              "type": "variable",
+                                              "data": "cell_value"
+                                            },
+                                            "b": {
+                                              "type": "literal",
+                                              "data": 1
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "b": {
+                                        "type": "literal",
+                                        "data": 256
+                                      }
+                                    }
+                                  }
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": 256
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "else": []
+                  }
+                },
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "equal"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "instruction"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": "."
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "cell_value"
+                          },
+                          "value": {
+                            "type": "get",
+                            "data": {
+                              "from": {
+                                "type": "variable",
+                                "data": "tape"
+                              },
+                              "index": {
+                                "type": "variable",
+                                "data": "pointer"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "append",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "output"
+                          },
+                          "value": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "variable",
+                                "data": "int_to_char"
+                              },
+                              "inputs_from": {
+                                "code": {
+                                  "type": "variable",
+                                  "data": "cell_value"
+                                },
+                                "characters": {
+                                  "type": "variable",
+                                  "data": "code_to_char"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "else": []
+                  }
+                },
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "equal"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "instruction"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": ","
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "input_character"
+                          },
+                          "value": {
+                            "type": "get",
+                            "data": {
+                              "from": {
+                                "type": "input",
+                                "data": "input"
+                              },
+                              "index": {
+                                "type": "variable",
+                                "data": "input_index"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "if",
+                        "arguments": {
+                          "condition": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "equal"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "variable",
+                                  "data": "input_character"
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": null
+                                }
+                              }
+                            }
+                          },
+                          "then": [
+                            {
+                              "type": "set",
+                              "arguments": {
+                                "target_var": {
+                                  "type": "literal",
+                                  "data": "tape"
+                                },
+                                "index": {
+                                  "type": "variable",
+                                  "data": "pointer"
+                                },
+                                "value": {
+                                  "type": "literal",
+                                  "data": 0
+                                }
+                              }
+                            }
+                          ],
+                          "else": [
+                            {
+                              "type": "store",
+                              "arguments": {
+                                "target_var": {
+                                  "type": "literal",
+                                  "data": "cell_value"
+                                },
+                                "value": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "variable",
+                                      "data": "char_to_int"
+                                    },
+                                    "inputs_from": {
+                                      "character": {
+                                        "type": "variable",
+                                        "data": "input_character"
+                                      },
+                                      "characters": {
+                                        "type": "variable",
+                                        "data": "code_to_char"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "set",
+                              "arguments": {
+                                "target_var": {
+                                  "type": "literal",
+                                  "data": "tape"
+                                },
+                                "index": {
+                                  "type": "variable",
+                                  "data": "pointer"
+                                },
+                                "value": {
+                                  "type": "variable",
+                                  "data": "cell_value"
+                                }
+                              }
+                            },
+                            {
+                              "type": "store",
+                              "arguments": {
+                                "target_var": {
+                                  "type": "literal",
+                                  "data": "input_index"
+                                },
+                                "value": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "runtime",
+                                      "data": "add"
+                                    },
+                                    "inputs_from": {
+                                      "a": {
+                                        "type": "variable",
+                                        "data": "input_index"
+                                      },
+                                      "b": {
+                                        "type": "literal",
+                                        "data": 1
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else": []
+                  }
+                },
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "equal"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "instruction"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": "["
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "cell_value"
+                          },
+                          "value": {
+                            "type": "get",
+                            "data": {
+                              "from": {
+                                "type": "variable",
+                                "data": "tape"
+                              },
+                              "index": {
+                                "type": "variable",
+                                "data": "pointer"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "if",
+                        "arguments": {
+                          "condition": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "equal"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "variable",
+                                  "data": "cell_value"
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": 0
+                                }
+                              }
+                            }
+                          },
+                          "then": [
+                            {
+                              "type": "store",
+                              "arguments": {
+                                "target_var": {
+                                  "type": "literal",
+                                  "data": "matched_bracket"
+                                },
+                                "value": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "variable",
+                                      "data": "find_matching_bracket"
+                                    },
+                                    "inputs_from": {
+                                      "program": {
+                                        "type": "input",
+                                        "data": "program"
+                                      },
+                                      "position": {
+                                        "type": "variable",
+                                        "data": "pc"
+                                      },
+                                      "direction": {
+                                        "type": "literal",
+                                        "data": 1
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "store",
+                              "arguments": {
+                                "target_var": {
+                                  "type": "literal",
+                                  "data": "pc"
+                                },
+                                "value": {
+                                  "type": "variable",
+                                  "data": "matched_bracket"
+                                }
+                              }
+                            }
+                          ],
+                          "else": []
+                        }
+                      }
+                    ],
+                    "else": []
+                  }
+                },
+                {
+                  "type": "if",
+                  "arguments": {
+                    "condition": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "equal"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "instruction"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": "]"
+                          }
+                        }
+                      }
+                    },
+                    "then": [
+                      {
+                        "type": "store",
+                        "arguments": {
+                          "target_var": {
+                            "type": "literal",
+                            "data": "cell_value"
+                          },
+                          "value": {
+                            "type": "get",
+                            "data": {
+                              "from": {
+                                "type": "variable",
+                                "data": "tape"
+                              },
+                              "index": {
+                                "type": "variable",
+                                "data": "pointer"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "if",
+                        "arguments": {
+                          "condition": {
+                            "type": "call",
+                            "data": {
+                              "function": {
+                                "type": "runtime",
+                                "data": "equal"
+                              },
+                              "inputs_from": {
+                                "a": {
+                                  "type": "variable",
+                                  "data": "cell_value"
+                                },
+                                "b": {
+                                  "type": "literal",
+                                  "data": 0
+                                }
+                              }
+                            }
+                          },
+                          "then": [],
+                          "else": [
+                            {
+                              "type": "store",
+                              "arguments": {
+                                "target_var": {
+                                  "type": "literal",
+                                  "data": "matched_bracket"
+                                },
+                                "value": {
+                                  "type": "call",
+                                  "data": {
+                                    "function": {
+                                      "type": "variable",
+                                      "data": "find_matching_bracket"
+                                    },
+                                    "inputs_from": {
+                                      "program": {
+                                        "type": "input",
+                                        "data": "program"
+                                      },
+                                      "position": {
+                                        "type": "variable",
+                                        "data": "pc"
+                                      },
+                                      "direction": {
+                                        "type": "literal",
+                                        "data": -1
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "store",
+                              "arguments": {
+                                "target_var": {
+                                  "type": "literal",
+                                  "data": "pc"
+                                },
+                                "value": {
+                                  "type": "variable",
+                                  "data": "matched_bracket"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else": []
+                  }
+                },
+                {
+                  "type": "store",
+                  "arguments": {
+                    "target_var": {
+                      "type": "literal",
+                      "data": "pc"
+                    },
+                    "value": {
+                      "type": "call",
+                      "data": {
+                        "function": {
+                          "type": "runtime",
+                          "data": "add"
+                        },
+                        "inputs_from": {
+                          "a": {
+                            "type": "variable",
+                            "data": "pc"
+                          },
+                          "b": {
+                            "type": "literal",
+                            "data": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "output": {
+    "type": "variable",
+    "data": "output"
+  }
+}
